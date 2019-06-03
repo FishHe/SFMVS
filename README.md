@@ -1,7 +1,7 @@
 # Algorithm for SFM and MVS
 > This markdown is maintained by FishHe(https://fishhe.github.io/).
 
-This library use a PIMPL model to isolate from 3rdparty header files. So you're released from various 3rdparties. Just include **SFMVS.h** to your project to use this library.
+This library uses a PIMPL model to isolate from 3rdparty header files. So you're released from various 3rdparties. Just include **SFMVS.h** to your project to use this library.
 
 All the sfm and mvs functions along the pipline are packaged into asynchronous classes. One can easily use these by:
 
