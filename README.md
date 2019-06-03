@@ -191,3 +191,71 @@ Yu Sifan is trying to simplify mesh using VGC or CGAL.
 > Let There Be Color! --- Large-Scale Texturing of 3D Reconstructions
 
 TexRecon is used for Texturing. We use an old version(https://github.com/andre-schulz/mvs-texturing/tree/cmake). Only this version can be build successfully on Windows.
+
+# Sample Code
+
+```cpp
+std::string project_path = "H:/RPFTest/";
+std::string image_path = "H:/RPFTest/images";
+
+Sgg4DRecon::FeatureExtractorOptions fe_ops(project_path, image_path,
+Sgg4DRecon::CameraModel::SimpleRadial, true);
+Sgg4DRecon::FeatureExtractor fe(fe_ops);
+fe.Start();
+fe.Wait();
+
+Sgg4DRecon::FeatureMatcherOptions fmOptions(project_path);
+Sgg4DRecon::FeatureMatcher fm(fmOptions);
+
+fm.Start();
+fm.Wait();
+
+Sgg4DRecon::IncreamentalMapperOptions imOptions(project_path, image_path);
+Sgg4DRecon::IncreamentalMapper im(imOptions);
+
+im.Start();
+im.Wait();
+
+Sgg4DRecon::UndistorterOptions unOptions(project_path, image_path, 0, Sgg4DRecon::Quality::Low);
+Sgg4DRecon::Undistorter un(unOptions);
+
+un.Start();
+un.Wait();
+
+Sgg4DRecon::PMDenseEstimatorOptions pmOptins(project_path, image_path, 0, Sgg4DRecon::Quality::Low, true);
+pmOptins.pass_patch_match = false;
+Sgg4DRecon::PMDepthEstimator pmde(pmOptins);
+
+pmde.Start();
+pmde.Wait();
+
+Sgg4DRecon::FuserOptions fuserOptions(project_path, 0, Sgg4DRecon::FuserType::Colmap, Sgg4DRecon::Quality::Low);
+Sgg4DRecon::Fuser fuser(fuserOptions);
+
+fuser.Start();
+fuser.Wait();
+
+Sgg4DRecon::MesherOptions meOptions(project_path, 0, Sgg4DRecon::Quality::Medium);
+Sgg4DRecon::Mesher mesher(meOptions);
+
+mesher.Start();
+mesher.Wait();
+
+Sgg4DRecon::TexturerOptions teOptions(project_path, 0);
+Sgg4DRecon::Texturer texturer(teOptions);
+
+texturer.Start();
+texturer.Wait();
+
+Sgg4DRecon::SGMDenseEstimatorOptions sgmOptions(project_path, 0);
+Sgg4DRecon::SGMDepthEstimator sgmEstimator(sgmOptions);
+
+sgmEstimator.Start();
+sgmEstimator.Wait();
+
+Sgg4DRecon::FuserOptions fuserOptions(project_path, 0);
+Sgg4DRecon::Fuser fuser(fuserOptions);
+
+fuser.Start();
+fuser.Wait();
+```
