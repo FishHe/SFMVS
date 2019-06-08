@@ -26,33 +26,9 @@ A complete note can be found at [COLMAP-Note](COLMAP.md).
 
 >  Galliani S , Lasinger K , Schindler K . Massively Parallel Multiview Stereopsis by Surface Normal Diffusion[C]// 2015 IEEE International Conference on Computer Vision (ICCV). IEEE Computer Society, 2015.
 
-Now I'm trying to repeat the ACMH algorithm with cuda.
+ACMH improves the propagation scheme of COLMAP. Now I'm trying to repeat the ACMH algorithm with cuda.
 
-I refer to Gipuma(https://github.com/kysucix/gipuma), and implement the ACMH in COLMAP project().
-
-The cuda structure is defined as follows:
-
-![](assets/markdown-img-paste-20190604213350699.png)
-
-* **Grid** The Block container.
-* **Block** The Thread container.
-* **Thread** The GPU Thread.
-* **Tile** The data area that is managed by the Block.
-* **Shared Area** The shared area related to a certain tile and its expansion.
-
-The tile_size is defined with both block_size and expansion_size.
-
-The checkerboard algorithm will be implemented in this way.
-
-### Problem Statement
-
-We need to calculate these terms:
-
-* **Depth Map**
-* **Normal Map**
-* **Cost Matrix Map**
-* **Confidence Matrix Map**
-* 
+[ACMH-Note](ACMH.md)
 
 ## ACMM
 
